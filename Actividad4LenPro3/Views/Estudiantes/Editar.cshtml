@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "Editar Estudiante";
+}
+
+@model Actividad4LenPro3.Models.Estudiante
+<h2>@ViewBag.Title</h2>
+
+@if(ViewBag.Message != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Message
+    </div>
+}
+else 
+{
+    <form asp-action="Editar" method="post">
+        <div class="form-group mb-2">
+            <label asp-for="NombreCompleto"></label>
+            <input asp-for="NombreCompleto" class="form-control" placeholder="Escribe tu nombre completo" />
+            <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-2">
+            <label asp-for="Matricula"></label>
+            <input readonly="true" asp-for="Matricula" class="form-control" placeholder="AB-0000-00000" />
+            <span asp-validation-for="Matricula" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-2">
+            <label asp-for="Carrera"></label>
+            <select asp-for="Carrera" class="form-control">
+                <option value="">Seleccione...</option>
+                <asp-items value="Ing.Software">Ing. Software</asp-items>
+                <asp-items value="Ing.Electrica">Ing. Eléctrica</asp-items>
+                <option value="Ing.Industrial">Ing. Industrial</option>
+                <option value="Enfermeria">Enfermería</option>
+                <option value="Otro">Otro</option>
+            </select>
+            <span asp-validation-for="Carrera" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-2">
+            <label asp-for="CorreoElectronico"></label>
+            <input asp-for="CorreoElectronico" class="form-control" placeholder="example@instituto.edu" />
+            <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-2">
+            <label asp-for="Telefono"></label>
+            <input asp-for="Telefono" class="form-control" placeholder="000-000-0000" />
+            <span asp-validation-for="Telefono" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-2">
+            <label asp-for="FechaNacimiento"></label>
+            <input asp-for="FechaNacimiento" class="form-control" type="date" />
+            <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-2">
+            <label asp-for="Genero"></label>
+            <select asp-for="Genero" class="form-control">
+                <option value="">Seleccione...</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Otro">Otro</option>
+            </select>
+            <span asp-validation-for="Genero" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-2">
+            <label asp-for="Turno"></label>
+            <select asp-for="Turno" class="form-control">
+                <option value="">Seleccione...</option>
+                <option value="Mañana">Mañana</option>
+                <option value="Tarde">Tarde</option>
+                <option value="Noche">Noche</option>
+            </select>
+            <span asp-validation-for="Turno" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-2">
+            <label asp-for="TipoIngreso"></label>
+            <select asp-for="TipoIngreso" class="form-control">
+                <option value="">Seleccione...</option>
+                <option value="Nuevo">Nuevo</option>
+                <option value="Readmitido">Readmitido</option>
+                <option value="Otro">Otro</option>
+            </select>
+            <span asp-validation-for="TipoIngreso" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-2 form-check">
+            <input asp-for="EstaBecado" class="form-check-input" />
+            <label class="form-check-label" asp-for="EstaBecado"></label>
+            <span asp-validation-for="EstaBecado" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-2">
+            <label asp-for="PorcentajeBeca"></label>
+            <input asp-for="PorcentajeBeca" class="form-control-range" type="range" min="0" max="100" step="1" />
+            <span asp-validation-for="PorcentajeBeca" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-2">
+            <label asp-for="TerminoCondicione"></label>
+            <select asp-for="TerminoCondicione" class="form-control">
+                <option value="">Seleccione...</option>
+                <option value="True">Sí</option>
+                <option value="False">No</option>
+            </select>
+            <span asp-validation-for="TerminoCondicione" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+            <button type="submit" class="btn btn-primary my-2">Guardar</button>
+            <a type="button" asp-action="Lista" class="btn btn-secondary my-2">Atras</a>
+        </div>
+    </form>
+}
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

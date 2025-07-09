@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewData["Title"] = "Lista de Estudiantes";
+}
+@model IEnumerable<Actividad4LenPro3.Models.Estudiante>
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model != null && Model.Any())
+{
+    <div class="alert alert-success">
+        Se encontraron @Model.Count() estudiantes.
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">
+        No se encontraron estudiantes registrados.
+    </div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre Completo</th>
+            <th>Matrícula</th>
+            <th>Carrera</th>
+            <th>Correo Electrónico</th>
+            <th>Teléfono</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Género</th>
+            <th>Turno</th>
+            <th>Tipo Ingreso</th>
+            <th>Esta Becado</th>
+            <th>Porcentaje Beca</th>
+            <th>Termino Condiciones</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var estudiante in Model)
+        {
+            <tr>
+                <td>@estudiante.NombreCompleto</td>
+                <td>@estudiante.Matricula</td>
+                <td>@estudiante.Carrera</td>
+                <td>@estudiante.CorreoElectronico</td>
+                <td>@estudiante.Telefono</td>
+                <td>@estudiante.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                <td>@estudiante.Genero</td>
+                <td>@estudiante.Turno</td>
+                <td>@estudiante.TipoIngreso</td>
+                <td>@estudiante.EstaBecado</td>
+                <td>@estudiante.PorcentajeBeca</td>
+                <td>@estudiante.TerminoCondicione</td>
+                <td>
+                    <div class="d-flex align-items-center gap-2">
+                        <a asp-action="Editar" asp-controller="Estudiantes" asp-route-matricula="@estudiante.Matricula" class="btn btn-success me-2">Editar</a>
+                        <a asp-action="Eliminar" asp-controller="Estudiantes" asp-route-matricula="@estudiante.Matricula" class="btn btn-danger">Eliminar</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary" asp-controller="Estudiantes" asp-action="Index">Registrar</a>
