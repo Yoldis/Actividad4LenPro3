@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "Lista de Calificaciones";
+}
+@model IEnumerable<Actividad4LenPro3.Models.Calificacione>
+
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model != null && Model.Any())
+{
+    <div class="alert alert-success">
+        Se encontraron @Model.Count() calificaciones.
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">
+        No se encontraron calificaciones registrados.
+    </div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Matricula Estudiante</th>
+            <th>Codigo Materia</th>
+            <th>Nota</th>
+            <th>Periodo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var materia in Model)
+        {
+            <tr>
+                <td>@materia.MatriculaEstudiante</td>
+                <td>@materia.CodigoMateria</td>
+                <td>@materia.Nota</td>
+                <td>@materia.Periodo</td>
+                <td>
+                    <div class="d-flex align-items-center gap-2">
+                        <a asp-action="Editar" asp-controller="Calificaciones" asp-route-id="@materia.Id" class="btn btn-success me-2">Editar</a>
+                        <a asp-action="Eliminar" asp-controller="Calificaciones" asp-route-id="@materia.Id" class="btn btn-danger">Eliminar</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary" asp-controller="Calificaciones" asp-action="Index">Registrar</a>

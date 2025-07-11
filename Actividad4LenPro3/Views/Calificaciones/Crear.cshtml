@@ -1,0 +1,49 @@
+﻿@model Actividad4LenPro3.Models.Calificacione
+
+@{
+    ViewData["Title"] = "Registrar Calificación";
+}
+
+<h2>Registrar Calificación</h2>
+
+<form asp-action="Registrar" method="post">
+    <div class="form-group">
+        <label asp-for="MatriculaEstudiante"></label>
+        <select asp-for="MatriculaEstudiante" asp-items="ViewBag.Estudiantes" class="form-control">
+            <option value="">Seleccione un estudiante</option>
+        </select>
+        <span asp-validation-for="MatriculaEstudiante" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CodigoMateria"></label>
+        <select asp-for="CodigoMateria" asp-items="ViewBag.Materias" class="form-control">
+            <option value="">Seleccione una materia</option>
+        </select>
+        <span asp-validation-for="CodigoMateria" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Nota"></label>
+        <input asp-for="Nota" class="form-control" />
+        <span asp-validation-for="Nota" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Periodo"></label>
+        <input asp-for="Periodo" class="form-control" />
+        <span asp-validation-for="Periodo" class="text-danger"></span>
+    </div>
+
+    <div class="d-flex align-items-center gap-2">
+        <button type="submit" class="btn btn-primary my-2">Guardar</button>
+        <a type="button" asp-action="Lista" class="btn btn-secondary my-2">Atras</a>
+    </div>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
