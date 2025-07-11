@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "Lista de Materias";
+}
+@model IEnumerable<Actividad4LenPro3.Models.Materia>
+
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model != null && Model.Any())
+{
+    <div class="alert alert-success">
+        Se encontraron @Model.Count() materias.
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">
+        No se encontraron materias registrados.
+    </div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Codigo</th>
+            <th>Creditos</th>
+            <th>Carrera</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var materia in Model)
+        {
+            <tr>
+                <td>@materia.Nombre</td>
+                <td>@materia.Codigo</td>
+                <td>@materia.Creditos</td>
+                <td>@materia.Carrera</td>
+                <td>
+                    <div class="d-flex align-items-center gap-2">
+                        <a asp-action="Editar" asp-controller="Materias" asp-route-id="@materia.Id" class="btn btn-success me-2">Editar</a>
+                        <a asp-action="Eliminar" asp-controller="Materias" asp-route-id="@materia.Id" class="btn btn-danger">Eliminar</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary" asp-controller="Materias" asp-action="Index">Registrar</a>

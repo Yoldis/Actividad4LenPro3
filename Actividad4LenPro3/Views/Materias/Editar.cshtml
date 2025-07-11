@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Editar Materia";
+}
+@model Actividad4LenPro3.Models.Materia;
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Editar" method="post">
+    <div class="form-group mb-2">
+        <label asp-for="Nombre"></label>
+        <input asp-for="Nombre" class="form-control" placeholder="Nombre de la materia" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-2">
+        <label asp-for="Codigo"></label>
+        <input asp-for="Codigo" readonly class="form-control" placeholder="AB-0000-00000" />
+        <span asp-validation-for="Codigo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-2">
+        <label asp-for="Creditos"></label>
+        <input asp-for="Creditos" type="number" class="form-control" placeholder="0 al 10" />
+        <span asp-validation-for="Creditos" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group mb-2">
+        <label asp-for="Carrera"></label>
+        <select asp-for="Carrera" class="form-control">
+            <option value="">Seleccione...</option>
+            <option value="Ing.Software">Ing. Software</option>
+            <option value="Ing.Electrica">Ing. Eléctrica</option>
+            <option value="Ing.Industrial">Ing. Industrial</option>
+            <option value="Enfermeria">Enfermería</option>
+            <option value="Otro">Otro</option>
+        </select>
+        <span asp-validation-for="Carrera" class="text-danger"></span>
+    </div>
+
+
+    <div class="d-flex align-items-center gap-2">
+        <button type="submit" class="btn btn-primary my-2">Guardar</button>
+        <a type="button" asp-action="Lista" class="btn btn-secondary my-2">Atras</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
